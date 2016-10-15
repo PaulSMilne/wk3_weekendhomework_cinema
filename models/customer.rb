@@ -2,17 +2,16 @@ require_relative('../db/sql_runner')
 
 class Customer
 
-    attr_reader :id, :name, :wallet, :concession
+    attr_reader :id, :name, :wallet
 
     def initialize(options)
         @id = options['id'].to_i
         @name = options['name']
         @wallet = options['wallet']
-        @concession = options[false]
     end
 
     def create
-        sql ="INSERT INTO customers (name, wallet, concession) VALUES ('#{@name}', '#{@wallet}', '#{@concession}') RETURNING *"
+        sql ="INSERT INTO customers (name, wallet) VALUES ('#{@name}', '#{@wallet}') RETURNING *"
         customer = SqlRunner.run(sql).first
         @id = customer['id']
     end
@@ -26,8 +25,7 @@ class Customer
     def update
         sql = "UPDATE customers SET (
             name        = '#{@name}',
-            wallet      = '#{@wallet}',
-            concession  = '#{@concession}')
+            wallet      = '#{@wallet}',)
         WHERE id = #{@id};"
         SqlRunner.run(sql)
     end
@@ -37,7 +35,7 @@ class Customer
         SqlRunner.run(sql)
     end
 
-    def delete_all
+    def self.delete_all
         sql = "DELETE FROM customers"
         SqlRunner.run(sql)
     end

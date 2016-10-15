@@ -5,15 +5,12 @@ DROP TABLE IF EXISTS films;
 CREATE TABLE customers (
     id SERIAL4 PRIMARY KEY,
     name VARCHAR(255),
-    wallet INT2,
-    concession BOOLEAN
+    wallet INT2
 );
 
 CREATE TABLE films (
     id SERIAL4 PRIMARY KEY,
-    name VARCHAR(255),
-    genre VARCHAR(255),
-    running_time INT2
+    name VARCHAR(255)
 );
 
 CREATE TABLE tickets (

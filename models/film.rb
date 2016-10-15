@@ -7,12 +7,10 @@ class Film
     def initialize(options)
         @id = options['id'].to_i
         @name = options['name']
-        @genre = options['genre']
-        @running_time = options['running_time'].to_i
     end
 
     def create
-        sql = "INSERT INTO films (name, genre, running_time) VALUES ('#{@name}', '#{@genre}','#{@running_time}')
+        sql = "INSERT INTO films (name) VALUES ('#{@name}')
         RETURNING *;"
         film = SqlRunner.run(sql).first
         @id = film['id']
@@ -26,9 +24,7 @@ class Film
 
     def update
         sql = "UPDATE films SET (
-            name = '#{@name}',
-            genre = '#{@genre}',
-            running_time = '#{@running_time}') 
+            name = '#{@name}') 
         WHERE id = #{@id};"
         SqlRunner.run(sql)
     end
