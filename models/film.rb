@@ -2,7 +2,8 @@ require_relative('../db/sql_runner')
 
 class Film
 
-    attr_reader :id, :name, :genre, :running_time
+    attr_reader :id
+    attr_accessor :name, :genre, :running_time
 
     def initialize(options)
         @id = options['id'].to_i
@@ -23,8 +24,8 @@ class Film
     end
 
     def update
-        sql = "UPDATE films SET (
-            name = '#{@name}') 
+        sql = "UPDATE films SET 
+            name = '#{@name}' 
         WHERE id = #{@id};"
         SqlRunner.run(sql)
     end
@@ -34,7 +35,7 @@ class Film
         SqlRunner.run(sql)
     end
 
-    def delete_all
+    def self.delete_all
         sql = "DELETE FROM films"
         SqlRunner.run(sql)
     end

@@ -2,12 +2,13 @@ require_relative('../db/sql_runner')
 
 class Customer
 
-    attr_reader :id, :name, :wallet
+    attr_reader :id
+    attr_accessor :name, :wallet
 
     def initialize(options)
         @id = options['id'].to_i
         @name = options['name']
-        @wallet = options['wallet']
+        @wallet = options['wallet'].to_i
     end
 
     def create
@@ -23,9 +24,9 @@ class Customer
     end
 
     def update
-        sql = "UPDATE customers SET (
+        sql = "UPDATE customers SET 
             name        = '#{@name}',
-            wallet      = '#{@wallet}',)
+            wallet      = '#{@wallet}'
         WHERE id = #{@id};"
         SqlRunner.run(sql)
     end
