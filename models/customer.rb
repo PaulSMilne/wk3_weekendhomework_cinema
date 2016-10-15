@@ -12,10 +12,7 @@ class Customer
     end
 
     def create
-        sql ="INSERT INTO customers (name, wallet, concession) VALUES ('#{@name}', 
-                    '#{@wallet}', 
-                    '#{@concession}') 
-            RETURNING *"
+        sql ="INSERT INTO customers (name, wallet, concession) VALUES ('#{@name}', '#{@wallet}', '#{@concession}') RETURNING *"
         customer = SqlRunner.run(sql).first
         @id = customer['id']
     end
@@ -40,4 +37,8 @@ class Customer
         SqlRunner.run(sql)
     end
 
+    def delete_all
+        sql = "DELETE FROM customers"
+        SqlRunner.run(sql)
+    end
 end

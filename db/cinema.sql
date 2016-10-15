@@ -21,7 +21,6 @@ CREATE TABLE tickets (
     customer_id INT2 REFERENCES customers(id),
     film_id INT2 REFERENCES films(id),
     price INT2,
-    concession_price INT2,
     time TIME,
     capacity INT2
 );

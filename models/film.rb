@@ -12,10 +12,7 @@ class Film
     end
 
     def create
-        sql = "INSERT INTO films (name, genre, running_time) VALUES (
-            name            = '#{name}',
-            genre           = '#{genre}',
-            running_time    = '#{running_time}')
+        sql = "INSERT INTO films (name, genre, running_time) VALUES ('#{@name}', '#{@genre}','#{@running_time}')
         RETURNING *;"
         film = SqlRunner.run(sql).first
         @id = film['id']
@@ -41,4 +38,8 @@ class Film
         SqlRunner.run(sql)
     end
 
+    def delete_all
+        sql = "DELETE FROM films"
+        SqlRunner.run(sql)
+    end
 end
