@@ -17,7 +17,7 @@ class Customer
                     '#{@concession}') 
             RETURNING *"
         customer = SqlRunner.run(sql).first
-        @id = customer['id'].to_i
+        @id = customer['id']
     end
 
     def self.read_all
@@ -28,15 +28,15 @@ class Customer
 
     def update
         sql = "UPDATE customers SET (
-        name        = '#{@name}',
-        wallet      = '#{@wallet}',
-        concession  = '#{@concession}')
+            name        = '#{@name}',
+            wallet      = '#{@wallet}',
+            concession  = '#{@concession}')
         WHERE id = #{@id};"
         SqlRunner.run(sql)
     end
 
     def delete
-        sql = "DELETE FROM customers WHERE id == #{@id}"
+        sql = "DELETE FROM customers WHERE id = #{@id}"
         SqlRunner.run(sql)
     end
 
