@@ -3,17 +3,18 @@ require_relative('../db/sql_runner')
 class Ticket
 
     attr_reader :id
-    attr_accessor :customer_id, :film_id, :price
+    attr_accessor :customer_id, :film_id, :price, :time
 
     def initialize(options)
         @id = options['id'].to_i
         @customer_id = options['customer_id'].to_i
         @film_id = options['film_id'].to_i
-        @price = options['price'].to_i  
+        @price = options['price'].to_i
+        @time = options['time'].to_i
     end
 
     def create
-        sql = "INSERT INTO tickets (customer_id, film_id, price) VALUES ('#{@customer_id}', '#{@film_id}', '#{@price}') RETURNING *;"
+        sql = "INSERT INTO tickets (customer_id, film_id, price, time) VALUES ('#{@customer_id}', '#{@film_id}', '#{@price}', '#{time}' ) RETURNING *;"
         ticket = SqlRunner.run(sql)
         @id = ticket[id]
     end
@@ -28,7 +29,8 @@ class Ticket
         sql ="UPDATE tickets SET 
             customer_id = '#{@customer_id}',
             film_id = '#{@film_id}',
-            price = '#{@price}'
+            price = '#{@price}',
+            time = '#{@time}'
         WHERE id = #{@id};"
         SqlRunner.run(sql)
     end
@@ -42,8 +44,8 @@ class Ticket
         SqlRunner.run(sql)
     end
 
-    def self.sell(new_customer_id, new_film_id, new_price)
-        new_ticket = Ticket.new('customer_id' => new_customer_id, 'film_id' => new_film_id, 'price' => new_price
+    def self.sell(new_customer_id, new_film_id, new_price, new_time)
+        new_ticket = Ticket.new('customer_id' => new_customer_id, 'film_id' => new_film_id, 'price' => new_price, 'time' => new_time
             )
         new_ticket.create
         sql = "SELECT wallet FROM customers WHERE id = #{new_customer_id} "

@@ -46,4 +46,12 @@ class Film
         customers = SqlRunner.run(sql)
         return customers.count
     end
+
+    def popular_time
+        sql = "SELECT * FROM tickets WHERE film_id = #{@id};"
+        tickets = SqlRunner.run(sql)
+        ticket_times = tickets.map {|ticket| ticket["time"]}
+        popular_time = ticket_times.uniq.max_by{|time| ticket_times.count[time.to_i]}
+        return popular_time
+    end
 end

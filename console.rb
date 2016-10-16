@@ -29,16 +29,16 @@ film2.create
 film3 = Film.new('name' => "Plan 9 from Outer Space")
 film3.create
 
-Ticket.sell(customer1.id, film1.id, 4)
-Ticket.sell(customer4.id, film1.id, 4)
-Ticket.sell(customer5.id, film1.id, 4)
-Ticket.sell(customer7.id, film1.id, 4)
-Ticket.sell(customer1.id, film2.id, 6)
-Ticket.sell(customer2.id, film2.id, 6)
-Ticket.sell(customer3.id, film2.id, 6)
-Ticket.sell(customer6.id, film2.id, 6)
-Ticket.sell(customer7.id, film2.id, 6)
-Ticket.sell(customer7.id, film3.id, 2)
+Ticket.sell(customer1.id, film1.id, 4, 1730)
+Ticket.sell(customer4.id, film1.id, 4, 1730)
+Ticket.sell(customer5.id, film1.id, 4, 1730)
+Ticket.sell(customer7.id, film1.id, 4, 2000)
+Ticket.sell(customer1.id, film2.id, 6, 1900)
+Ticket.sell(customer2.id, film2.id, 6, 1900)
+Ticket.sell(customer3.id, film2.id, 6, 1900)
+Ticket.sell(customer6.id, film2.id, 6, 2200)
+Ticket.sell(customer7.id, film2.id, 6, 2200)
+Ticket.sell(customer7.id, film3.id, 2, 1400)
 
 
 

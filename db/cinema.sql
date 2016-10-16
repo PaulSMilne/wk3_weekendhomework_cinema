@@ -17,5 +17,6 @@ CREATE TABLE tickets (
     id SERIAL4 PRIMARY KEY,
     customer_id INT2 REFERENCES customers(id),
     film_id INT2 REFERENCES films(id),
-    price INT2
+    price INT2,
+    time TIME
 );
