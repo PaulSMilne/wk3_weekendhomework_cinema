@@ -42,4 +42,13 @@ class Customer
         SqlRunner.run(sql)
     end
 
+    # def buy_ticket(film_name, new_price) 
+        #CHECK OUT MAPPING FUNCTIONS FROM OTHER EXERCISES
+        # sql_film_id ="SELECT id FROM films WHERE name = '#{film_name}'"
+        # new_film_id = SqlRunner.run(sql_film_id).first
+        # new_ticket = Ticket.new('customer_id' => @id, 'film_id' => new_film_id, 'price' => new_price)
+        # @wallet -= new_price
+
+        # return new_ticket
+    # end
 end

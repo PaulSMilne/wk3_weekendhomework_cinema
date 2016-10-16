@@ -24,7 +24,7 @@ ticket1 = Ticket.new(
 ticket1.create
 
 Ticket.sell(customer2.id, film2.id, 6)
-
+Ticket.sell(customer1.id, film2.id, 6)
 binding.pry
 
 

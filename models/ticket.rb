@@ -46,6 +46,11 @@ class Ticket
         new_ticket = Ticket.new('customer_id' => new_customer_id, 'film_id' => new_film_id, 'price' => new_price
             )
         new_ticket.create
+        sql = "SELECT wallet FROM customers WHERE id = #{new_customer_id} "
+        new_wallet = SqlRunner.run(sql).first["wallet"].to_i
+        new_wallet -= new_price
+        sql2 = "UPDATE customers SET wallet = #{new_wallet} WHERE id = #{new_customer_id} "
+        SqlRunner.run(sql2)
     end
 
 end
