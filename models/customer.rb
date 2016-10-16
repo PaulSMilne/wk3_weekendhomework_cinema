@@ -42,6 +42,12 @@ class Customer
         SqlRunner.run(sql)
     end
 
+    def ticket_count
+        sql = "SELECT * FROM tickets WHERE customer_id = #{@id};"
+        tickets = SqlRunner.run(sql)
+        return tickets.count
+    end
+
     # def buy_ticket(film_name, new_price) 
         #CHECK OUT MAPPING FUNCTIONS FROM OTHER EXERCISES
         # sql_film_id ="SELECT id FROM films WHERE name = '#{film_name}'"
