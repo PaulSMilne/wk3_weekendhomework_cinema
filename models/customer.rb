@@ -1,4 +1,5 @@
 require_relative('../db/sql_runner')
+# require_relative('ticket.rb')
 
 class Customer
 
@@ -40,4 +41,5 @@ class Customer
         sql = "DELETE FROM customers"
         SqlRunner.run(sql)
     end
+
 end

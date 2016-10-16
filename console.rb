@@ -9,20 +9,22 @@ Customer.delete_all
 
 customer1 = Customer.new('name' => "Paul", 'wallet' => 25)
 customer1.create
+customer2 = Customer.new('name' => "Diana", 'wallet' => 15)
+customer2.create
 
 film1 = Film.new('name' => "The Long Goodbye")
 film1.create
+film2 = Film.new('name' => "Titanic")
+film2.create
 
 ticket1 = Ticket.new(
     'customer_id' => customer1.id, 
     'film_id' => film1.id, 
-    'price' => 3, 
-    'time' => 1830, 
-    'capacity' => 200)
+    'price' => 3)
 ticket1.create
 
-film1.name = "Titanic"
-film1.update
+Ticket.sell(customer2.id, film2.id, 6)
+
 binding.pry
 
 

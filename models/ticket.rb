@@ -3,19 +3,17 @@ require_relative('../db/sql_runner')
 class Ticket
 
     attr_reader :id
-    attr_accessor :customer_id, :film_id, :price, :time, :capacity
+    attr_accessor :customer_id, :film_id, :price
 
     def initialize(options)
         @id = options['id'].to_i
         @customer_id = options['customer_id'].to_i
         @film_id = options['film_id'].to_i
-        @price = options['price'].to_i
-        @time = options['time']
-        @capacity = options['capacity']  
+        @price = options['price'].to_i  
     end
 
     def create
-        sql = "INSERT INTO tickets (customer_id, film_id, price, time, capacity) VALUES ('#{@customer_id}', '#{@film_id}', '#{@price}', '#{@time}', '#{@capacity}') RETURNING *;"
+        sql = "INSERT INTO tickets (customer_id, film_id, price) VALUES ('#{@customer_id}', '#{@film_id}', '#{@price}') RETURNING *;"
         ticket = SqlRunner.run(sql)
         @id = ticket[id]
     end
@@ -30,9 +28,7 @@ class Ticket
         sql ="UPDATE tickets SET 
             customer_id = '#{@customer_id}',
             film_id = '#{@film_id}',
-            price = '#{@price}',
-            time = '#{@time}',
-            capacity = '#{@capacity}'
+            price = '#{@price}'
         WHERE id = #{@id};"
         SqlRunner.run(sql)
     end
@@ -45,4 +41,11 @@ class Ticket
         sql = "DELETE FROM tickets"
         SqlRunner.run(sql)
     end
+
+    def self.sell(new_customer_id, new_film_id, new_price)
+        new_ticket = Ticket.new('customer_id' => new_customer_id, 'film_id' => new_film_id, 'price' => new_price
+            )
+        new_ticket.create
+    end
+
 end
