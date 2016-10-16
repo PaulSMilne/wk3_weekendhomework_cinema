@@ -19,7 +19,6 @@ customer5 = Customer.new('name' => "Thomas", 'wallet' => 12)
 customer5.create
 customer6 = Customer.new('name' => "Jo", 'wallet' => 9)
 customer6.create
-
 customer7 = Customer.new('name' => "Zsolt", 'wallet' => 50)
 customer7.create
 

@@ -40,4 +40,10 @@ class Film
         sql = "DELETE FROM films"
         SqlRunner.run(sql)
     end
+
+    def customer_count
+        sql = "SELECT customers.* FROM customers INNER JOIN tickets ON tickets.customer_id = customers.id WHERE tickets.film_id = #{@id};"
+        customers = SqlRunner.run(sql)
+        return customers.count
+    end
 end
